@@ -34,6 +34,11 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento */
 const createCell = (number) => {
     let cell = document.createElement('div'); // creo la cella
     cell.classList.add('cell'); // gli inserisco la classe che permette a css di dare le proprietà
+    if(gridSelect.value === "2"){
+        cell.classList.add('medium-cell');
+    } else if(gridSelect.value === "3"){
+        cell.classList.add('hard-cell');
+    }
     cell.innerText = number; // preparo la lettura del numero al suo interno
 
     return cell;
@@ -45,17 +50,58 @@ const createCell = (number) => {
 
 // Collego gli elementi della pagina
 
-const grid = document.getElementById('grid');
+const container = document.getElementById('grid-container')
+let grid = document.getElementById('grid');
 const button = document.getElementById('start-button');
 
-// Dichiaro le misure della mia griglia nelle variabili
 
-const rows = 10;
-const cells = 10;
-const totalCells = rows * cells;
+
+// * BONUS * //
+
+// Collego l'elemento select della pagina
+
+const gridSelect = document.getElementById('grid-select');
+
+let rows;
+let cells;
+
 
 // Quando premo il pulsante start
+
 button.addEventListener('click',() => {
+
+    // Rimuovo la griglia esistente e ricreo l'elemento
+    
+    grid.remove();
+    grid = document.createElement('div');
+    grid.id = 'grid';
+    container.appendChild(grid);
+    
+    
+
+    // Dichiaro le misure della mia griglia nelle variabili
+    
+    switch(gridSelect.value) {
+        case "1": {
+            rows = 10;
+            cells = 10;
+            break;
+        };
+        case "2": {
+            rows = 9
+            cells = 9;
+            
+            break;
+        }
+        case "3": {
+            rows = 7
+            cells = 7;
+            break;
+        }
+        
+    }
+
+    const totalCells = rows * cells;
 
     for(let i = 1; i <= totalCells; i++){ // Fintanto che non ho creato tante celle quante quelle richieste (in totalCells)
         let cell = createCell(i); // Creo una cella (con variabile cell) usando la funzione createCell
