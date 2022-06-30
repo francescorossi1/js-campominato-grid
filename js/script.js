@@ -32,9 +32,9 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento */
 // Funzione per creare una cella
 
 const createCell = (number) => {
-    let cell = document.createElement('div');
-    cell.classList.add('cell');
-    cell.innerText = number;
+    let cell = document.createElement('div'); // creo la cella
+    cell.classList.add('cell'); // gli inserisco la classe che permette a css di dare le proprietà
+    cell.innerText = number; // preparo la lettura del numero al suo interno
 
     return cell;
 }
@@ -43,23 +43,26 @@ const createCell = (number) => {
 
 // Creo la griglia usando js
 
+// Collego gli elementi della pagina
+
 const grid = document.getElementById('grid');
 const button = document.getElementById('start-button');
+
+// Dichiaro le misure della mia griglia nelle variabili
 
 const rows = 10;
 const cells = 10;
 const totalCells = rows * cells;
 
-
+// Quando premo il pulsante start
 button.addEventListener('click',() => {
 
-    let cell;
-    for(let i = 1; i <= totalCells; i++){
-        cell = createCell(i);
-        grid.appendChild(cell); 
-        cell.addEventListener('click',(event) => {
-            event.target.classList.add('clicked');
-            console.log('hai cliccato la casella: ' + [i])
+    for(let i = 1; i <= totalCells; i++){ // Fintanto che non ho creato tante celle quante quelle richieste (in totalCells)
+        let cell = createCell(i); // Creo una cella (con variabile cell) usando la funzione createCell
+        grid.appendChild(cell);  // Appendo la nuova cella alla griglia
+        cell.addEventListener('click',(event) => { // Osservo un evento applicato alla nuova cella quando essa viene cliccata
+            event.target.classList.toggle('clicked'); // Che aggiunge/rimuove la classe clicked (creata in css)
+            console.log('hai cliccato la casella: ' + [i]) // E mi stampa in console il numero della cella
         })
     }   
 })
