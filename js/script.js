@@ -31,10 +31,10 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento */
 
 // Funzione per creare una cella
 
-const createCell = () => {
+const createCell = (number) => {
     let cell = document.createElement('div');
     cell.classList.add('cell');
-
+    cell.innerText = number;
 
     return cell;
 }
@@ -53,7 +53,7 @@ const totalCells = rows * cells;
 
 button.addEventListener('click',() => {
     for(let i = 1; i <= totalCells; i++){
-        cell = createCell();
+        cell = createCell(i);
         grid.appendChild(cell);
     }
 })
