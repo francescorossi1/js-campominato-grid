@@ -52,8 +52,14 @@ const totalCells = rows * cells;
 
 
 button.addEventListener('click',() => {
+
+    let cell;
     for(let i = 1; i <= totalCells; i++){
         cell = createCell(i);
-        grid.appendChild(cell);
-    }
+        grid.appendChild(cell); 
+        cell.addEventListener('click',(event) => {
+            event.target.classList.add('clicked');
+            console.log('hai cliccato la casella: ' + [i])
+        })
+    }   
 })
