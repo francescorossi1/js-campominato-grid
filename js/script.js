@@ -27,6 +27,33 @@ Di cosa ho bisogno per generare i numeri?
 Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
 Le validazioni e i controlli possiamo farli anche in un secondo momento */
 
-// Steps 
+// * Functions
 
-// Hardcodiamo la griglia
+// Funzione per creare una cella
+
+const createCell = () => {
+    let cell = document.createElement('div');
+    cell.classList.add('cell');
+
+
+    return cell;
+}
+
+// * Steps 
+
+// Creo la griglia usando js
+
+const grid = document.getElementById('grid');
+const button = document.getElementById('start-button');
+
+const rows = 10;
+const cells = 10;
+const totalCells = rows * cells;
+
+
+button.addEventListener('click',() => {
+    for(let i = 1; i <= totalCells; i++){
+        cell = createCell();
+        grid.appendChild(cell);
+    }
+})
